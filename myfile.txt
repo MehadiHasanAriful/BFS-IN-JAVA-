@@ -1,0 +1,58 @@
+import  java.util.*;
+public class Main {
+    public static void main(String[] args) {
+     Scanner sc = new Scanner(System.in);
+     int node;
+     node = sc.nextInt();
+
+     int [][]graph = new int[node][node];
+     for (int i =0 ; i < node ; i++){
+         for (int j =0 ; j < node ; j++){
+             graph[i][j] = 0;
+         }
+     }
+     int src , dest;
+
+        System.out.print("Please enter the edge no : ");
+     int edge = sc.nextInt();
+     for (int i = 0 ; i < edge ; i++){
+         src = sc.nextInt();
+         dest = sc.nextInt();
+
+        graph[src][dest] = 1;
+        graph[dest][src] = 1 ;
+     }
+
+     boolean []visited = new boolean[node];
+     for (int i = 0 ; i < node ; i++)
+         visited[i] = false;
+
+     int start;
+        System.out.print("Please enter start index : ");
+        start = sc.nextInt();
+
+        int []queue = new int[node];
+        int front =0, rear = 0;
+
+        queue[rear] = start;
+        rear++;
+        visited[start] = true;
+
+        while(front < rear){
+
+            int currentVertex = queue[front];
+            front++;
+            System.out.print(""+currentVertex+" ");
+
+            for (int i = 0 ; i < node ; i++){
+
+                if(graph[currentVertex][i] == 1 && visited[i] == false){
+                    queue[rear] = i;
+                    rear++;
+                    visited[i] = true;
+                }
+            }
+        }
+    }
+}
+ 
